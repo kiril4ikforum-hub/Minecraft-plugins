@@ -1,0 +1,105 @@
+# CoomLobby - Русские сообщения.
+# Плейсхолдеры: {online}, {max_online}, {server_ip}, {server_port}, {motd}, {player},
+#               {mode}, {mode_online}, {max}, {world}, {time}, {prefix}
+# Цветовые коды: используйте "&" (например &6) - они автоматически заменяются на §.
+# Этот файл создаётся в plugin_data/CoomLobby/lang/ при первом запуске и может свободно редактироваться.
+
+prefix: "&8[&6CoomLobby&8] &r"
+
+form:
+  title: "&l&6CoomLobby &8- &fВыбор режима"
+  content: "&7Выберите игровой режим ниже.\n&7Всего онлайн: &a{online}&7/&a{max_online}"
+  close: "&cЗакрыть"
+
+mode:
+  status:
+    available: "&aДоступен"
+    full: "&cПолон"
+    unavailable: "&7Недоступен"
+    locked: "&cНет доступа"
+  online: "&7Онлайн: &a{current}"
+  online_limited: "&7Онлайн: &a{current}&7/&a{max}"
+  button: "&6{mode}\n{online}\n{status}"
+
+selector:
+  name: "&6&lВыбор режима"
+  lore:
+    - "&7Нажмите ПКМ, чтобы открыть меню"
+    - "&8Смена режима: 1 клик"
+
+command:
+  player_only: "{prefix}&cЭту команду можно использовать только в игре."
+  lobby:
+    teleported: "{prefix}&aВы телепортированы в лобби."
+    cooldown: "{prefix}&cПодождите &e{time}с&c перед следующей телепортацией."
+    unavailable: "{prefix}&cЛобби сейчас недоступно."
+  setlobby:
+    saved: "{prefix}&aТочка спавна лобби для мира &e{world}&a сохранена: &e{x} {y} {z}&a."
+    saved_mode: "{prefix}&aТочка спавна мира &e{world}&a сохранена: &e{x} {y} {z}&a."
+    world_not_lobby: "{prefix}&eМир &e{world}&e отсутствует в &flobby.worlds&e. Добавьте его для защиты мира."
+    world_not_found: "{prefix}&cМир &e{world}&c не найден или не загружен."
+    not_in_world: "{prefix}&cВы должны находиться в мире &e{world}&c, чтобы задать его спавн."
+  admin:
+    reloaded: "{prefix}&aКонфигурация, языковые файлы, режимы и задачи перезагружены."
+    reload_failed: "{prefix}&cПерезагрузка не удалась, подробности в консоли сервера."
+    info_header: "{prefix}&6CoomLobby &7v{version}"
+    info_line: "&7 - &f{key}&7: &a{value}"
+    tp_usage: "{prefix}&cИспользование: /coomlobby tp <игрок> <режим>"
+    tp_success: "{prefix}&aИгрок &e{player}&a телепортирован в режим &e{mode}&a."
+    tp_failed: "{prefix}&cНе удалось телепортировать &e{player}&c в режим &e{mode}&c."
+    tp_unknown_mode: "{prefix}&cРежим &e{mode}&c не найден в конфигурации."
+    rp_usage: "{prefix}&cИспользование: /coomlobby rp <игрок>"
+    rp_sent: "{prefix}&aРесурспак отправлен игроку &e{player}&a."
+    rp_failed: "{prefix}&cНе удалось отправить ресурспак игроку &e{player}&c: &f{reason}"
+    rp_handshake: "{prefix}&eЭто ядро отправляет ресурспак при подключении: &f{player}&e получит пак (&f{pack}&e) при следующем входе."
+    rp_disabled: "{prefix}&cРесурспак отключён или не был загружен."
+    player_not_found: "{prefix}&cИгрок &e{player}&c не в сети."
+    unknown_subcommand: "{prefix}&cНеизвестная подкоманда. Доступно: &freload&c, &finfo&c, &ftp&c, &frp&c."
+    no_permission: "{prefix}&cУ вас нет прав на это действие."
+
+status:
+  version: "Версия"
+  server_version: "Ядро"
+  storage: "Хранилище"
+  profiles: "Профилей игроков"
+  resource_pack: "Ресурспак"
+  default_language: "Язык по умолчанию"
+  lobby_worlds: "Миры лобби"
+  primary_world: "Основной мир"
+  lobby_spawn: "Точка спавна лобби"
+  lobby_gamemode: "Режим игры в лобби"
+  modes: "Активные режимы"
+  modes_online: "Онлайн по режимам"
+  mode_online: "&f{mode}&7=&a{online}"
+  players_online: "Игроков онлайн"
+  loaded_worlds: "Загружено миров"
+  config_entries: "Секций в config.yml"
+
+teleport:
+  success: "{prefix}&aДобро пожаловать в режим &e{mode}&a!"
+  cooldown: "{prefix}&cПодождите &e{time}с&c перед сменой режима."
+  mode_disabled: "{prefix}&cЭтот режим сейчас отключён."
+  mode_full: "{prefix}&cРежим заполнен (&e{current}&c/&e{max}&c)."
+  no_permission: "{prefix}&cУ вас нет прав на вход в режим &e{mode}&c."
+  world_missing: "{prefix}&cМир режима &e{mode}&c недоступен."
+
+protection:
+  block_break: "{prefix}&cЛомать блоки в лобби запрещено."
+  block_place: "{prefix}&cСтавить блоки в лобби запрещено."
+  item_drop: "{prefix}&cВыбрасывать предметы в лобби запрещено."
+  item_pickup: "{prefix}&cПодбирать предметы в лобби запрещено."
+  interact_block: "{prefix}&cЗдесь это использовать нельзя."
+  use_item: "{prefix}&cНельзя использовать &e{item}&c в лобби."
+  chat: "{prefix}&cЧат в лобби отключён."
+  flight: "{prefix}&cПолёт в лобби отключён."
+  gamemode: "{prefix}&cВ лобби нельзя изменить игровой режим."
+  projectile: "{prefix}&cВ лобби нельзя использовать снаряды."
+
+lobby:
+  welcome: "{prefix}&aДобро пожаловать в лобби, &e{player}&a!"
+  selector_given: "{prefix}&7Используйте &e{mode_selector}&7, чтобы выбрать режим."
+
+ads:
+  messages:
+    - "&e[CoomLobby] &fВыберите любимый режим через селектор режимов!"
+    - "&aОнлайн сейчас: &f{online}"

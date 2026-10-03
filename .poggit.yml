@@ -1,0 +1,10 @@
+---
+branches:
+  - main
+projects:
+  CoomLobby:
+    path: CoomLobby
+    lint:
+      phpstan: false
+      syntaxError: true
+...

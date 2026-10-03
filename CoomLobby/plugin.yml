@@ -1,0 +1,47 @@
+name: CoomLobby
+version: 1.0.0
+main: CoomLobby\Main
+api: [5.0.0]
+author: CoomLobby
+description: Advanced lobby system with mode selection UI, world protection, automatic ads and resource pack management.
+website: https://github.com/kiril4ikforum-hub/Minecraft-plugins
+load: POSTWORLD
+softdepend:
+  - CoomLanguage
+
+commands:
+  lobby:
+    description: Teleport to the lobby
+    usage: "/lobby"
+    aliases: [lob]
+    permission: coomlobby.use
+  setlobby:
+    description: Set the lobby spawn point to your current position
+    usage: "/setlobby [world]"
+    permission: coomlobby.admin
+  coomlobby:
+    description: CoomLobby admin panel
+    usage: "/coomlobby <reload|info|tp|rp>"
+    aliases: [cl]
+    permission: coomlobby.admin
+
+permissions:
+  coomlobby:
+    description: Root permission node for CoomLobby
+    default: false
+    children:
+      coomlobby.use:
+        description: Allows using the mode selector and /lobby
+        default: true
+      coomlobby.admin:
+        description: Allows using the CoomLobby admin commands
+        default: op
+      coomlobby.bypass:
+        description: Bypasses all lobby protection rules (build, chat, fly, damage)
+        default: op
+      coomlobby.chat:
+        description: Allows chatting inside lobby worlds
+        default: false
+  coomlobby.mode.*:
+    description: Grants access to a specific game mode (coomlobby.mode.<mode_id>)
+    default: op

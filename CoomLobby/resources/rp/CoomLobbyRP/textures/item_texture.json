@@ -1,0 +1,12 @@
+{
+  "resource_pack_name": "CoomLobbyRP",
+  "texture_name": "atlas.items",
+  "texture_data": {
+    "compass_item": {
+      "textures": "textures/item/coomlobby_selector"
+    },
+    "coomlobby_selector": {
+      "textures": "textures/item/coomlobby_selector"
+    }
+  }
+}

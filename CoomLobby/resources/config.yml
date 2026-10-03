@@ -1,0 +1,322 @@
+# ===========================================================================
+#  CoomLobby - lobby hub plugin for PocketMine-MP 5.x (Bedrock)
+# ===========================================================================
+#  Every key below can be written either in kebab-case ("max-players") or in
+#  snake_case ("max_players"); both are accepted. Boolean flags accept
+#  true/false, yes/no, on/off and 1/0. Invalid values are replaced with the
+#  documented default and reported in the server console - the plugin never
+#  crashes because of a malformed config.
+# ===========================================================================
+
+config-version: 1
+
+# ---------------------------------------------------------------------------
+# Language handling
+# ---------------------------------------------------------------------------
+language:
+  # Fallback language: "ru" or "en" (used when the client locale is unknown
+  # or is not supported by the shipped language files).
+  default: "ru"
+  # Use the CoomLanguage plugin (softdepend) when it is installed.
+  use-coomlanguage: true
+  # Methods that are probed on the CoomLanguage plugin instance (in order).
+  # The first existing method that accepts a Player argument is used.
+  coomlanguage-methods:
+    - "getPlayerLanguage"
+    - "getLanguage"
+    - "getLanguageCode"
+    - "getLocale"
+  # How long (seconds) a resolved player language is cached in memory.
+  cache-ttl: 60
+
+# ---------------------------------------------------------------------------
+# Lobby definition
+# ---------------------------------------------------------------------------
+lobby:
+  # Worlds that are treated as lobby worlds. All protection rules and the
+  # selector logic only apply to these worlds.
+  worlds:
+    - "lobby_main"
+  # World used by /lobby and as a fallback. Leave empty to use the first
+  # entry of "worlds".
+  primary-world: "lobby_main"
+  # Clear the whole inventory when a player enters the lobby.
+  clear-inventory-on-join: true
+  # Game mode applied to players inside lobby worlds: adventure/survival/creative/spectator
+  gamemode: "adventure"
+  # Teleport players to the lobby spawn when they join/respawn in a lobby world.
+  enforce-spawn: true
+  # Give the selector item on join/respawn/teleport into a lobby world.
+  give-selector-on-join: true
+  # Send a welcome message on join.
+  welcome-message: true
+  # Remove lobby protection from players with the coomlobby.bypass permission
+  # (they may build, fly, chat and fight).
+  # Set to false to protect the lobby even from bypass players.
+  honor-bypass-permission: true
+
+# ---------------------------------------------------------------------------
+# Mode selector item
+# ---------------------------------------------------------------------------
+selector:
+  # Any vanilla item identifier, e.g. minecraft:compass, minecraft:nether_star
+  item-id: "minecraft:compass"
+  # Inventory slot (hotbar slots are 0-8, inventory slots 9-35).
+  slot: 8
+  # Also select the hotbar slot after giving the item.
+  select-on-give: false
+  # Anti-spam cooldown (milliseconds) between two selector clicks.
+  cooldown-ms: 1000
+  name:
+    ru: "&6&lВыбор режима"
+    en: "&6&lMode Selector"
+  lore:
+    ru:
+      - "&7Нажмите ПКМ, чтобы открыть меню"
+      - "&8Смена режима: 1 клик"
+    en:
+      - "&7Right-click to open the menu"
+      - "&8Mode switch: 1 click"
+
+# ---------------------------------------------------------------------------
+# Game modes
+# ---------------------------------------------------------------------------
+modes:
+  # Seconds the per-mode online counter is cached (also refreshed by a task).
+  cache-ttl: 3
+  # Load the mode world automatically when it is not loaded yet.
+  auto-load-worlds: true
+  # Spread players over all worlds of a mode (the emptiest world is used first).
+  world-balancing: true
+  # Global cooldown (seconds) between two mode teleports of the same player.
+  teleport-cooldown: 5
+  # Cooldown (seconds) for /lobby.
+  lobby-teleport-cooldown: 3
+
+  list:
+    grief:
+      enabled: true
+      world: "grief_1"
+      max-players: 0            # 0 = unlimited
+      permission: ""            # e.g. "coomlobby.mode.grief"
+      icon: "textures/ui/coomlobby/grief"
+      icon-type: "path"         # path | url | auto
+      name:
+        ru: "Гриф"
+        en: "Grief"
+      description:
+        ru: "Свободная игра без правил"
+        en: "Free for all, no rules"
+      gamemode: "survival"
+      spawn-point:
+        x: 0.5
+        y: 65.0
+        z: 0.5
+        yaw: 0.0
+        pitch: 0.0
+
+    anarchy:
+      enabled: true
+      world: "anarchy_1"
+      max-players: 0
+      permission: ""
+      icon: "textures/ui/coomlobby/anarchy"
+      name:
+        ru: "Анархия"
+        en: "Anarchy"
+      description:
+        ru: "Полная анархия без защиты"
+        en: "Complete anarchy"
+      gamemode: "survival"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+    bedwars:
+      enabled: true
+      world: "bw_1"
+      # Several worlds per mode are supported for balancing:
+      # worlds: ["bw_1", "bw_2"]
+      max-players: 20
+      permission: ""
+      icon: "textures/ui/coomlobby/bedwars"
+      name:
+        ru: "BedWars"
+        en: "BedWars"
+      description:
+        ru: "Защищайте свою кровать"
+        en: "Protect your bed"
+      gamemode: "survival"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+    skywars:
+      enabled: true
+      world: "skywars_1"
+      max-players: 16
+      permission: ""
+      icon: "textures/ui/coomlobby/skywars"
+      name:
+        ru: "SkyWars"
+        en: "SkyWars"
+      description:
+        ru: "Бой на островах в небе"
+        en: "Battle on sky islands"
+      gamemode: "survival"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+    duels:
+      enabled: true
+      world: "duels_1"
+      max-players: 2
+      permission: ""
+      icon: "textures/ui/coomlobby/duels"
+      name:
+        ru: "Дуэли"
+        en: "Duels"
+      description:
+        ru: "Один на один"
+        en: "One versus one"
+      gamemode: "survival"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+    skyblock:
+      enabled: true
+      world: "skyblock_1"
+      max-players: 0
+      permission: ""
+      icon: "textures/ui/coomlobby/skyblock"
+      name:
+        ru: "SkyBlock"
+        en: "SkyBlock"
+      description:
+        ru: "Выживание на острове"
+        en: "Survive on your island"
+      gamemode: "survival"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+    mine:
+      enabled: true
+      world: "mine_1"
+      max-players: 0
+      permission: ""
+      icon: "textures/ui/coomlobby/mine"
+      name:
+        ru: "Шахта"
+        en: "Mine"
+      description:
+        ru: "Копайте и развивайтесь"
+        en: "Dig and progress"
+      gamemode: "survival"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+    murder_mystery:
+      enabled: true
+      world: "mm_1"
+      max-players: 16
+      permission: ""
+      icon: "textures/ui/coomlobby/murder_mystery"
+      name:
+        ru: "Murder Mystery"
+        en: "Murder Mystery"
+      description:
+        ru: "Найдите убийцу"
+        en: "Find the murderer"
+      gamemode: "adventure"
+      spawn-point: {x: 0.5, y: 65.0, z: 0.5, yaw: 0.0, pitch: 0.0}
+
+# ---------------------------------------------------------------------------
+# Lobby protection
+# ---------------------------------------------------------------------------
+protection:
+  block-break: true
+  block-place: true
+  item-drop: true
+  item-pickup: true
+  damage: true
+  hunger: true
+  chat: true
+  interact-blocks: true
+  use-items: true
+  projectiles: true
+  flight: true
+  force-gamemode: true
+  inventory-transaction: true
+  # Items the player may use in the lobby even when "use-items" is true
+  # (the selector item is always allowed). Empty = everything is blocked
+  # except the items listed in "blocked-items".
+  allowed-items:
+    - "minecraft:compass"
+  # Items that may never be used in the lobby.
+  blocked-items:
+    - "minecraft:ender_pearl"
+    - "minecraft:snowball"
+    - "minecraft:egg"
+    - "minecraft:bucket"
+    - "minecraft:water_bucket"
+    - "minecraft:lava_bucket"
+    - "minecraft:potion"
+    - "minecraft:splash_potion"
+    - "minecraft:lingering_potion"
+    - "minecraft:fishing_rod"
+    - "minecraft:flint_and_steel"
+    - "minecraft:fire_charge"
+    - "minecraft:bow"
+    - "minecraft:crossbow"
+    - "minecraft:arrow"
+    - "minecraft:firework_rocket"
+    - "minecraft:end_crystal"
+    - "minecraft:tnt"
+  # Minimum delay (seconds) between two identical protection warnings.
+  warning-cooldown: 5
+
+# ---------------------------------------------------------------------------
+# Automatic advertisements
+# ---------------------------------------------------------------------------
+ads:
+  enabled: true
+  interval-seconds: 600
+  # rotate = messages are sent in order, random = random message each time
+  order: "rotate"
+  # true  = only players inside lobby worlds receive the ads
+  # false = every player on the server receives the ads
+  lobby-only: false
+  # Fallback used for {server_ip} when the server listens on a wildcard address.
+  ip-fallback: "play.example.com"
+  messages:
+    ru:
+      - "&e[CoomLobby] &fНовый сезон BedWars уже доступен!"
+      - "&aОнлайн сейчас: &f{online}&a игроков"
+      - "&eЗаходи: &f{server_ip}"
+    en:
+      - "&e[CoomLobby] &fThe new BedWars season is live!"
+      - "&aOnline right now: &f{online}&a players"
+      - "&eJoin us: &f{server_ip}"
+
+# ---------------------------------------------------------------------------
+# Resource pack (.mcpack)
+# ---------------------------------------------------------------------------
+resource-pack:
+  enabled: true
+  # Build plugin_data/CoomLobby/CoomLobbyRP.mcpack from the shipped sources
+  # (resources/rp/CoomLobbyRP) when the plugin version changes.
+  build: true
+  # File name inside plugin_data/CoomLobby (or an absolute path).
+  file: "CoomLobbyRP.mcpack"
+  # Folder inside plugin_data/CoomLobby that receives the RP sources.
+  pack-folder: "rp/CoomLobbyRP"
+  # Force clients to accept the pack before they can play.
+  force-accept: false
+  # Strict integrity check: if not empty, the pack header UUID must match
+  # this value, otherwise the pack is not sent at all.
+  expected-uuid: ""
+  # Rebuild the pack on every plugin start (useful while designing textures).
+  rebuild-always: false
+
+# ---------------------------------------------------------------------------
+# Player storage (statistics & settings)
+# ---------------------------------------------------------------------------
+storage:
+  # sqlite | yaml | auto  (auto = sqlite when the PDO SQLite driver exists)
+  type: "auto"
+  sqlite:
+    file: "coomlobby.db"
+  yaml:
+    file: "players.yml"
