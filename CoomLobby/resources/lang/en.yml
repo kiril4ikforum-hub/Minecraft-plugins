@@ -1,0 +1,105 @@
+# CoomLobby - English messages.
+# Placeholders: {online}, {max_online}, {server_ip}, {server_port}, {motd}, {player},
+#               {mode}, {mode_online}, {max}, {world}, {time}, {prefix}
+# Color codes: use "&" (e.g. &6) - they are converted to section signs automatically.
+# This file is generated into plugin_data/CoomLobby/lang/ on first start and can be edited freely.
+
+prefix: "&8[&6CoomLobby&8] &r"
+
+form:
+  title: "&l&6CoomLobby &8- &fMode Selection"
+  content: "&7Choose a game mode below.\n&7Total online: &a{online}&7/&a{max_online}"
+  close: "&cClose"
+
+mode:
+  status:
+    available: "&aAvailable"
+    full: "&cFull"
+    unavailable: "&7Unavailable"
+    locked: "&cLocked"
+  online: "&7Online: &a{current}"
+  online_limited: "&7Online: &a{current}&7/&a{max}"
+  button: "&6{mode}\n{online}\n{status}"
+
+selector:
+  name: "&6&lMode Selector"
+  lore:
+    - "&7Right-click to open the menu"
+    - "&8Mode switch: 1 click"
+
+command:
+  player_only: "{prefix}&cThis command can only be used in game."
+  lobby:
+    teleported: "{prefix}&aYou have been teleported to the lobby."
+    cooldown: "{prefix}&cPlease wait &e{time}s&c before teleporting again."
+    unavailable: "{prefix}&cThe lobby is not available right now."
+  setlobby:
+    saved: "{prefix}&aLobby spawn for world &e{world}&a saved at &e{x} {y} {z}&a."
+    saved_mode: "{prefix}&aSpawn point for world &e{world}&a saved at &e{x} {y} {z}&a."
+    world_not_lobby: "{prefix}&eWorld &e{world}&e is not listed in &flobby.worlds&e. Add it to protect the world."
+    world_not_found: "{prefix}&cWorld &e{world}&c was not found or is not loaded."
+    not_in_world: "{prefix}&cYou have to stand in world &e{world}&c to set its spawn."
+  admin:
+    reloaded: "{prefix}&aConfiguration, language files, modes and tasks reloaded."
+    reload_failed: "{prefix}&cThe reload failed, see the server console for details."
+    info_header: "{prefix}&6CoomLobby &7v{version}"
+    info_line: "&7 - &f{key}&7: &a{value}"
+    tp_usage: "{prefix}&cUsage: /coomlobby tp <player> <mode>"
+    tp_success: "{prefix}&aPlayer &e{player}&a teleported to mode &e{mode}&a."
+    tp_failed: "{prefix}&cCould not teleport &e{player}&c to mode &e{mode}&c."
+    tp_unknown_mode: "{prefix}&cMode &e{mode}&c was not found in the configuration."
+    rp_usage: "{prefix}&cUsage: /coomlobby rp <player>"
+    rp_sent: "{prefix}&aResource pack sent to &e{player}&a."
+    rp_failed: "{prefix}&cCould not send the resource pack to &e{player}&c: &f{reason}"
+    rp_handshake: "{prefix}&eThis server sends resource packs during login: &f{player}&e will receive the pack (&f{pack}&e) on the next join."
+    rp_disabled: "{prefix}&cThe resource pack is disabled or was not loaded."
+    player_not_found: "{prefix}&cPlayer &e{player}&c is not online."
+    unknown_subcommand: "{prefix}&cUnknown subcommand. Available: &freload&c, &finfo&c, &ftp&c, &frp&c."
+    no_permission: "{prefix}&cYou do not have permission to do that."
+
+status:
+  version: "Version"
+  server_version: "Server"
+  storage: "Storage"
+  profiles: "Player profiles"
+  resource_pack: "Resource pack"
+  default_language: "Default language"
+  lobby_worlds: "Lobby worlds"
+  primary_world: "Primary world"
+  lobby_spawn: "Lobby spawn"
+  lobby_gamemode: "Lobby game mode"
+  modes: "Active modes"
+  modes_online: "Online per mode"
+  mode_online: "&f{mode}&7=&a{online}"
+  players_online: "Players online"
+  loaded_worlds: "Loaded worlds"
+  config_entries: "config.yml sections"
+
+teleport:
+  success: "{prefix}&aWelcome to &e{mode}&a!"
+  cooldown: "{prefix}&cPlease wait &e{time}s&c before changing modes again."
+  mode_disabled: "{prefix}&cThis mode is currently disabled."
+  mode_full: "{prefix}&cThis mode is full (&e{current}&c/&e{max}&c)."
+  no_permission: "{prefix}&cYou do not have permission to join &e{mode}&c."
+  world_missing: "{prefix}&cThe world for mode &e{mode}&c is not available."
+
+protection:
+  block_break: "{prefix}&cYou cannot break blocks in the lobby."
+  block_place: "{prefix}&cYou cannot place blocks in the lobby."
+  item_drop: "{prefix}&cYou cannot drop items in the lobby."
+  item_pickup: "{prefix}&cYou cannot pick up items in the lobby."
+  interact_block: "{prefix}&cYou cannot use that here."
+  use_item: "{prefix}&cYou cannot use &e{item}&c in the lobby."
+  chat: "{prefix}&cChat is disabled in the lobby."
+  flight: "{prefix}&cFlight is disabled in the lobby."
+  gamemode: "{prefix}&cYour game mode cannot be changed in the lobby."
+  projectile: "{prefix}&cYou cannot use projectiles in the lobby."
+
+lobby:
+  welcome: "{prefix}&aWelcome to the lobby, &e{player}&a!"
+  selector_given: "{prefix}&7Use the &e{mode_selector}&7 to choose a game mode."
+
+ads:
+  messages:
+    - "&e[CoomLobby] &fChoose your favourite mode with the mode selector!"
+    - "&aOnline right now: &f{online}"

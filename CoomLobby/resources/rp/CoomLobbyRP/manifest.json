@@ -1,0 +1,25 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "CoomLobby Resource Pack",
+    "description": "Mode selector textures, mode button icons and the CoomLobby UI theme.",
+    "uuid": "5760372d-a6f1-433e-9b50-d608b4fcf503",
+    "version": [1, 0, 0],
+    "min_engine_version": [1, 20, 0]
+  },
+  "modules": [
+    {
+      "type": "resources",
+      "description": "CoomLobby textures",
+      "uuid": "af3462e8-0d20-4028-a5ef-b8dfa9467ba0",
+      "version": [1, 0, 0]
+    }
+  ],
+  "metadata": {
+    "authors": ["CoomLobby"],
+    "license": "CC-BY-4.0",
+    "generated_with": {
+      "coomlobby": ["1.0.0"]
+    }
+  }
+}
